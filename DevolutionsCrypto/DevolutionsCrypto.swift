@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class DevolutionsCrypto {
+public class DevolutionsCrypto {
     public func keySize() -> UInt32 {
         return 0
     }
