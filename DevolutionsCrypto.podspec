@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "DevolutionsCrypto"
-  spec.version      = "0.0.4"
+  spec.version      = "0.0.5"
   spec.summary      = "A CocoaPods library for Devolutions crypto"
 
   spec.description  = <<-DESC
@@ -17,5 +17,6 @@ This CocoaPods library is for the Swift binding of the Devolutions crypto lib
 
   spec.source        = { :git => "https://github.com/SebAubin/DevolutionsCrypto.git", :tag => "#{spec.version}" }
   spec.source_files  = "DevolutionsCrypto/**/*.{h,m,swift}"
+  s.vendored_libraries = 'DevolutionsCrypto/Rust/*.a'
 
 end
