@@ -18,5 +18,6 @@ This CocoaPods library is for the Swift binding of the Devolutions crypto lib
   spec.source        = { :git => "https://github.com/SebAubin/DevolutionsCrypto.git", :tag => "#{spec.version}" }
   spec.source_files  = "DevolutionsCrypto/**/*.{h,m,swift}"
   spec.vendored_libraries = 'DevolutionsCrypto/Rust/*.a'
+  spec.xcconfig = { 'ARCHS' => 'x86_64 arm64', 'VALID_ARCHS' => 'x86_64 arm64'}
 
 end
