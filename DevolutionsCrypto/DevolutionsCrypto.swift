@@ -9,6 +9,10 @@
 import Foundation
 
 public class DevolutionsCrypto {
+    required init(){
+    
+    }
+    
     public func keySize() -> UInt32 {
         return 0
     }
