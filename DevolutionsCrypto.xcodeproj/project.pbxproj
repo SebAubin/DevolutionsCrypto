@@ -16,6 +16,8 @@
 		3EA4BDC32450950300F235FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC12450950300F235FA /* Main.storyboard */; };
 		3EA4BDC52450950400F235FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC42450950400F235FA /* Assets.xcassets */; };
 		3EA4BDC82450950400F235FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC62450950400F235FA /* LaunchScreen.storyboard */; };
+		3EA4BDCE245095FA00F235FA /* DevolutionsCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDCD245095FA00F235FA /* DevolutionsCrypto.swift */; };
+		3EA4BDD02450972100F235FA /* DevolutionsCrypto.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDCF2450972100F235FA /* DevolutionsCrypto.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		3EA4BDC42450950400F235FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EA4BDC72450950400F235FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EA4BDC92450950400F235FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EA4BDCD245095FA00F235FA /* DevolutionsCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionsCrypto.swift; sourceTree = "<group>"; };
+		3EA4BDCF2450972100F235FA /* DevolutionsCrypto.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DevolutionsCrypto.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 		3EA4BD91245094C400F235FA = {
 			isa = PBXGroup;
 			children = (
+				3EA4BDCF2450972100F235FA /* DevolutionsCrypto.podspec */,
 				3EA4BD9D245094C400F235FA /* DevolutionsCrypto */,
 				3EA4BDA8245094C400F235FA /* DevolutionsCryptoTests */,
 				3EA4BDBA2450950300F235FA /* DevolutionsCryptoExample */,
@@ -96,6 +101,7 @@
 			children = (
 				3EA4BD9E245094C400F235FA /* DevolutionsCrypto.h */,
 				3EA4BD9F245094C400F235FA /* Info.plist */,
+				3EA4BDCD245095FA00F235FA /* DevolutionsCrypto.swift */,
 			);
 			path = DevolutionsCrypto;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 				TargetAttributes = {
 					3EA4BD9A245094C400F235FA = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					3EA4BDA3245094C400F235FA = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -236,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA4BDD02450972100F235FA /* DevolutionsCrypto.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA4BDCE245095FA00F235FA /* DevolutionsCrypto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +446,7 @@
 		3EA4BDB0245094C400F235FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = N592S9ASDB;
@@ -453,6 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,6 +472,7 @@
 		3EA4BDB1245094C400F235FA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = N592S9ASDB;
@@ -485,6 +497,7 @@
 		3EA4BDB3245094C400F235FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N592S9ASDB;
 				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
@@ -503,6 +516,7 @@
 		3EA4BDB4245094C400F235FA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N592S9ASDB;
 				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
