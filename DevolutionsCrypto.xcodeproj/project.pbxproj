@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EA4BDA5245094C400F235FA /* DevolutionsCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4BD9B245094C400F235FA /* DevolutionsCrypto.framework */; };
+		3EA4BDAA245094C400F235FA /* DevolutionsCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDA9245094C400F235FA /* DevolutionsCryptoTests.swift */; };
+		3EA4BDAC245094C400F235FA /* DevolutionsCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA4BD9E245094C400F235FA /* DevolutionsCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EA4BDBC2450950300F235FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDBB2450950300F235FA /* AppDelegate.swift */; };
+		3EA4BDBE2450950300F235FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDBD2450950300F235FA /* SceneDelegate.swift */; };
+		3EA4BDC02450950300F235FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDBF2450950300F235FA /* ViewController.swift */; };
+		3EA4BDC32450950300F235FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC12450950300F235FA /* Main.storyboard */; };
+		3EA4BDC52450950400F235FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC42450950400F235FA /* Assets.xcassets */; };
+		3EA4BDC82450950400F235FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC62450950400F235FA /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3EA4BDA6245094C400F235FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4BD92245094C400F235FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EA4BD9A245094C400F235FA;
+			remoteInfo = DevolutionsCrypto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3EA4BD9B245094C400F235FA /* DevolutionsCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DevolutionsCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA4BD9E245094C400F235FA /* DevolutionsCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevolutionsCrypto.h; sourceTree = "<group>"; };
+		3EA4BD9F245094C400F235FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EA4BDA4245094C400F235FA /* DevolutionsCryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevolutionsCryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA4BDA9245094C400F235FA /* DevolutionsCryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionsCryptoTests.swift; sourceTree = "<group>"; };
+		3EA4BDAB245094C400F235FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EA4BDB92450950300F235FA /* DevolutionsCryptoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevolutionsCryptoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA4BDBB2450950300F235FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3EA4BDBD2450950300F235FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3EA4BDBF2450950300F235FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3EA4BDC22450950300F235FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3EA4BDC42450950400F235FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3EA4BDC72450950400F235FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3EA4BDC92450950400F235FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EA4BD98245094C400F235FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDA1245094C400F235FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA4BDA5245094C400F235FA /* DevolutionsCrypto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDB62450950300F235FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3EA4BD91245094C400F235FA = {
+			isa = PBXGroup;
+			children = (
+				3EA4BD9D245094C400F235FA /* DevolutionsCrypto */,
+				3EA4BDA8245094C400F235FA /* DevolutionsCryptoTests */,
+				3EA4BDBA2450950300F235FA /* DevolutionsCryptoExample */,
+				3EA4BD9C245094C400F235FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3EA4BD9C245094C400F235FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4BD9B245094C400F235FA /* DevolutionsCrypto.framework */,
+				3EA4BDA4245094C400F235FA /* DevolutionsCryptoTests.xctest */,
+				3EA4BDB92450950300F235FA /* DevolutionsCryptoExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EA4BD9D245094C400F235FA /* DevolutionsCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4BD9E245094C400F235FA /* DevolutionsCrypto.h */,
+				3EA4BD9F245094C400F235FA /* Info.plist */,
+			);
+			path = DevolutionsCrypto;
+			sourceTree = "<group>";
+		};
+		3EA4BDA8245094C400F235FA /* DevolutionsCryptoTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4BDA9245094C400F235FA /* DevolutionsCryptoTests.swift */,
+				3EA4BDAB245094C400F235FA /* Info.plist */,
+			);
+			path = DevolutionsCryptoTests;
+			sourceTree = "<group>";
+		};
+		3EA4BDBA2450950300F235FA /* DevolutionsCryptoExample */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4BDBB2450950300F235FA /* AppDelegate.swift */,
+				3EA4BDBD2450950300F235FA /* SceneDelegate.swift */,
+				3EA4BDBF2450950300F235FA /* ViewController.swift */,
+				3EA4BDC12450950300F235FA /* Main.storyboard */,
+				3EA4BDC42450950400F235FA /* Assets.xcassets */,
+				3EA4BDC62450950400F235FA /* LaunchScreen.storyboard */,
+				3EA4BDC92450950400F235FA /* Info.plist */,
+			);
+			path = DevolutionsCryptoExample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3EA4BD96245094C400F235FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA4BDAC245094C400F235FA /* DevolutionsCrypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3EA4BD9A245094C400F235FA /* DevolutionsCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA4BDAF245094C400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCrypto" */;
+			buildPhases = (
+				3EA4BD96245094C400F235FA /* Headers */,
+				3EA4BD97245094C400F235FA /* Sources */,
+				3EA4BD98245094C400F235FA /* Frameworks */,
+				3EA4BD99245094C400F235FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DevolutionsCrypto;
+			productName = DevolutionsCrypto;
+			productReference = 3EA4BD9B245094C400F235FA /* DevolutionsCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3EA4BDA3245094C400F235FA /* DevolutionsCryptoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA4BDB2245094C400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCryptoTests" */;
+			buildPhases = (
+				3EA4BDA0245094C400F235FA /* Sources */,
+				3EA4BDA1245094C400F235FA /* Frameworks */,
+				3EA4BDA2245094C400F235FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EA4BDA7245094C400F235FA /* PBXTargetDependency */,
+			);
+			name = DevolutionsCryptoTests;
+			productName = DevolutionsCryptoTests;
+			productReference = 3EA4BDA4245094C400F235FA /* DevolutionsCryptoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3EA4BDB82450950300F235FA /* DevolutionsCryptoExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA4BDCA2450950400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCryptoExample" */;
+			buildPhases = (
+				3EA4BDB52450950300F235FA /* Sources */,
+				3EA4BDB62450950300F235FA /* Frameworks */,
+				3EA4BDB72450950300F235FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DevolutionsCryptoExample;
+			productName = DevolutionsCryptoExample;
+			productReference = 3EA4BDB92450950300F235FA /* DevolutionsCryptoExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3EA4BD92245094C400F235FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = Devolutions;
+				TargetAttributes = {
+					3EA4BD9A245094C400F235FA = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					3EA4BDA3245094C400F235FA = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					3EA4BDB82450950300F235FA = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3EA4BD95245094C400F235FA /* Build configuration list for PBXProject "DevolutionsCrypto" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3EA4BD91245094C400F235FA;
+			productRefGroup = 3EA4BD9C245094C400F235FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3EA4BD9A245094C400F235FA /* DevolutionsCrypto */,
+				3EA4BDA3245094C400F235FA /* DevolutionsCryptoTests */,
+				3EA4BDB82450950300F235FA /* DevolutionsCryptoExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3EA4BD99245094C400F235FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDA2245094C400F235FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDB72450950300F235FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA4BDC82450950400F235FA /* LaunchScreen.storyboard in Resources */,
+				3EA4BDC52450950400F235FA /* Assets.xcassets in Resources */,
+				3EA4BDC32450950300F235FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EA4BD97245094C400F235FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDA0245094C400F235FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA4BDAA245094C400F235FA /* DevolutionsCryptoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA4BDB52450950300F235FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA4BDC02450950300F235FA /* ViewController.swift in Sources */,
+				3EA4BDBC2450950300F235FA /* AppDelegate.swift in Sources */,
+				3EA4BDBE2450950300F235FA /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EA4BDA7245094C400F235FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EA4BD9A245094C400F235FA /* DevolutionsCrypto */;
+			targetProxy = 3EA4BDA6245094C400F235FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3EA4BDC12450950300F235FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA4BDC22450950300F235FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3EA4BDC62450950400F235FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA4BDC72450950400F235FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3EA4BDAD245094C400F235FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3EA4BDAE245094C400F235FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3EA4BDB0245094C400F235FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DevolutionsCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3EA4BDB1245094C400F235FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DevolutionsCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3EA4BDB3245094C400F235FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3EA4BDB4245094C400F235FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3EA4BDCB2450950400F235FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				INFOPLIST_FILE = DevolutionsCryptoExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCryptoExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3EA4BDCC2450950400F235FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N592S9ASDB;
+				INFOPLIST_FILE = DevolutionsCryptoExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.devolutions.DevolutionsCryptoExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3EA4BD95245094C400F235FA /* Build configuration list for PBXProject "DevolutionsCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA4BDAD245094C400F235FA /* Debug */,
+				3EA4BDAE245094C400F235FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EA4BDAF245094C400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA4BDB0245094C400F235FA /* Debug */,
+				3EA4BDB1245094C400F235FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EA4BDB2245094C400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCryptoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA4BDB3245094C400F235FA /* Debug */,
+				3EA4BDB4245094C400F235FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EA4BDCA2450950400F235FA /* Build configuration list for PBXNativeTarget "DevolutionsCryptoExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA4BDCB2450950400F235FA /* Debug */,
+				3EA4BDCC2450950400F235FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3EA4BD92245094C400F235FA /* Project object */;
+}
