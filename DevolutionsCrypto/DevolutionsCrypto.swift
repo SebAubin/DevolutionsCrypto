@@ -12,6 +12,7 @@ public class DevolutionsCrypto {
     public init() {}
     
     public func keySize() -> UInt32 {
-        return KeySize()        
+       // return KeySize()
+        return 0
     }
 }
