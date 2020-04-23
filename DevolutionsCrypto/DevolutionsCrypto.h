@@ -18,3 +18,8 @@ FOUNDATION_EXPORT const unsigned char DevolutionsCryptoVersionString[];
 
 unsigned int KeySize();
 
+long HashPasswordLength();
+
+int64_t Decrypt(const uint8_t *data, uintptr_t data_length, const uint8_t *key, uintptr_t key_length, uint8_t *result, uintptr_t result_length);
+
+int64_t Decode(const uint8_t *input, uintptr_t input_length, uint8_t *output, uintptr_t output_length);
