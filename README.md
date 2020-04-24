@@ -1,5 +1,4 @@
-# Slauth
-
+# DevolutionsCrypto
 [![Version](https://img.shields.io/cocoapods/v/DevolutionsCrypto.svg?style=flat)](https://cocoapods.org/pods/DevolutionsCrypto)
 [![License](https://img.shields.io/cocoapods/l/DevolutionsCrypto.svg?style=flat)](https://cocoapods.org/pods/DevolutionsCrypto)
 [![Platform](https://img.shields.io/cocoapods/p/DevolutionsCrypto.svg?style=flat)](https://cocoapods.org/pods/DevolutionsCrypto)
