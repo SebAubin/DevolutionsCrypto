@@ -20,15 +20,20 @@ public class DevolutionsCrypto {
         let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
         let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
         resultPointer.initialize(repeating: 0, count: 2048)
+        var resultCode: Int64 = -1;
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 2048)
             key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 2048)
+                resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 2048)
             }
         }
         
-        return String(cString: resultPointer)
+        if resultCode > 0{
+            return String(cString: resultPointer)
+        }
+        
+        return ""
     }
     
     public func encrypt(decryptedData: String, key: [UInt8]) -> String{
@@ -38,14 +43,32 @@ public class DevolutionsCrypto {
         resultEncryptedPointer.initialize(repeating: 0, count: Int(encryptSize))
         
         let data = decryptedData.data(using: .utf8)
-        var encryptedSize: Int64 = 0;
+        var encryptedSize: Int64 = -1;
+        
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             key.withUnsafeBytes{ (keyBufferRawBufferPointer) -> Void in
                 encryptedSize = Encrypt(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(decryptedData.count), keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultEncryptedPointer, UInt(encryptSize), 0)
             }
         }
         
-        let final = Data(bytesNoCopy: resultEncryptedPointer, count: Int(encryptedSize), deallocator: .free)
-        return final.base64EncodedString()
+        if(encryptedSize > 0){
+            let final = Data(bytesNoCopy: resultEncryptedPointer, count: Int(encryptedSize), deallocator: .free)
+            return final.base64EncodedString()
+        }
+        
+        return ""
+    }
+    
+    public func generateKey(keyLength: Int) -> String{
+        let keyPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(keyLength))
+        keyPointer.initialize(repeating: 0, count: Int(keyLength))
+
+        if GenerateKey(keyPointer, UInt(keyLength)) == 0{
+            let final = Data(bytesNoCopy: keyPointer, count: Int(keyLength), deallocator: .free)
+            
+            return final.base64EncodedString()
+        }
+        
+        return ""
     }
 }
