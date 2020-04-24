@@ -24,6 +24,8 @@ int64_t EncryptSize(uintptr_t data_length, uint16_t version);
 
 int64_t GenerateKey(uint8_t *key, uintptr_t key_length);
 
+int64_t ValidateHeader(const uint8_t *data, uintptr_t data_length, uint16_t data_type);
+
 int64_t Decode(const uint8_t *input, uintptr_t input_length, uint8_t *output, uintptr_t output_length);
 
 int64_t Decrypt(const uint8_t *data, uintptr_t data_length, const uint8_t *key, uintptr_t key_length, uint8_t *result, uintptr_t result_length);

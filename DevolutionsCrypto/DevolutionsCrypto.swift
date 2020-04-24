@@ -71,4 +71,25 @@ public class DevolutionsCrypto {
         
         return ""
     }
+    
+    public func validateHeader(encodedData: String, type: Int) -> Bool{
+        let data = encodedData.data(using: .utf8)
+        
+        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
+        decodedPointer.initialize(repeating: 0, count: 2048)
+        
+        var resultCode: Int64 = -1;
+        
+        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedPointer, 2048)
+            
+            resultCode = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(type))
+        }
+        
+        if resultCode > 0{
+            return true
+        }
+        
+        return false
+    }
 }

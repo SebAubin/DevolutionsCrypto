@@ -30,6 +30,9 @@ class DevolutionsCryptoTests: XCTestCase {
     }
     
     func testDecrypt(toDecrypt: String = "DQwCAAEAAgArsheJXE5ajuHcAhp8HdHrROUdy7avnSj/E8M7sf9Po3Hk/162vtYzGgtF33N+1m03qISLEnVSAgtIQyVJk0KEwrtyd3TcPfklottnstcpjfdY/xkzneKjytjIW01HZpz8roc1AfrTPXRzjuNrZPIU+5/ID07nyYlFwcFMQ7+2Rn0hjGGBoPYCklEuPpuHqyEGQuS26zmQPwPIRZ4xkP0eQMXJMo+ya21h8ocGjS649xVmuIHBG6RQKFYYKVjhw2TSTx6RX2oIaZFPWCYSlThN/zEEwRaiHo2cnDZA2QO8073uxenj9nGyE5VgVi3IS31dGRLn8pPsDEGMzRFwv9fXTdO2P8iJQVxZQgEkCiWzSO/lg+2EXfXRMHd6uCV68A8IMV/lY49NGZLnFtfk++z2QcVauFQDNY4HlOC/CE5J27onayC2e7jAcD09jcb71PU1wCsdKHKpTCG+G9CXGWG817WC1tkJuaUKt4fzmMT0cUuALc1qF9A9508c/oamoX+8KImGryDxk+5/W7YcX4dz7U12PYXKSGAgzUndNQc/nE+yOXHUK+gQ9HRo3IpSpg3uOmPT4hmP7vPXU80PzgGUG4g56fwZ5fpnzCiEYQzyCOnKm3cOZauQeqC2EUY+wrOsBh6pVM2Rc+PBjJ70PPKBuGsiQYFDQ8xMUQFLsYFpLKe8ZUuATngk/oibZw7/BNqBHvC1BXgtJVftaYSfnMwZL8S9rUUYMNys82E+CItTfElxLQ3tnI9AGnOm7JpXOtDLzxUdXVvANr2OAyAYJAdXiDFJPO4dE6oAFYIcT6MD3+7RPVGHTZEuEWwdYqyEtSLG7QXaRJyi0Nt8fqJ6iiKaTsRrmeABYLWT9AKpx3EtBiOFoiu55qPymSVxR7BI84jurews/NWdMlXhdjfTKwJgGt6oNOhgVwfSpLBv3jxgxGHF+LUldBEGhXUyKYLCfGdAHsT4EV1t", key: [UInt8] = []) throws{
+        
+        // Validate header
+        try! testValidateHeader(data: toDecrypt, dataLength: Int64(toDecrypt.count))
 
         let data = toDecrypt.data(using: .utf8)
         let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
@@ -84,6 +87,21 @@ class DevolutionsCryptoTests: XCTestCase {
         
         try! testEncrypt(key: [UInt8](final))
         
+        XCTAssert(true)
+    }
+    
+    func testValidateHeader(data: String, dataLength: Int64) throws{
+        let data = data.data(using: .utf8)
+           
+        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
+        decodedPointer.initialize(repeating: 0, count: 2048)
+
+        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(dataLength), decodedPointer, 2048)
+
+            _ = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(2))
+        }
+           
         XCTAssert(true)
     }
 }
