@@ -35,14 +35,14 @@ class DevolutionsCryptoTests: XCTestCase {
         try! testValidateHeader(data: toDecrypt, dataLength: Int64(toDecrypt.count))
 
         let data = toDecrypt.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        resultPointer.initialize(repeating: 0, count: 2048)
+        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        resultPointer.initialize(repeating: 0, count: 65535)
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(toDecrypt.count), decodedStringPointer, 2048)
+            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(toDecrypt.count), decodedStringPointer, 65535)
             key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), 32, resultPointer, 2048)
+                Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), 32, resultPointer, 65535)
             }
         }
         
@@ -93,11 +93,11 @@ class DevolutionsCryptoTests: XCTestCase {
     func testValidateHeader(data: String, dataLength: Int64) throws{
         let data = data.data(using: .utf8)
            
-        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        decodedPointer.initialize(repeating: 0, count: 2048)
+        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        decodedPointer.initialize(repeating: 0, count: 65535)
 
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(dataLength), decodedPointer, 2048)
+            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(dataLength), decodedPointer, 65535)
 
             _ = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(2))
         }

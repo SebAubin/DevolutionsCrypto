@@ -17,15 +17,15 @@ public class DevolutionsCrypto {
     
     public func decrypt(encodedData: String, key: [UInt8]) -> String {
         let data = encodedData.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        resultPointer.initialize(repeating: 0, count: 2048)
+        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        resultPointer.initialize(repeating: 0, count: 65535)
         var resultCode: Int64 = -1;
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 2048)
+            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
             key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 2048)
+                resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535)
             }
         }
         
@@ -75,13 +75,13 @@ public class DevolutionsCrypto {
     public func validateHeader(encodedData: String, type: Int) -> Bool{
         let data = encodedData.data(using: .utf8)
         
-        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 2048)
-        decodedPointer.initialize(repeating: 0, count: 2048)
+        let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        decodedPointer.initialize(repeating: 0, count: 65535)
         
         var resultCode: Int64 = -1;
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedPointer, 2048)
+            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedPointer, 65535)
             
             resultCode = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(type))
         }
