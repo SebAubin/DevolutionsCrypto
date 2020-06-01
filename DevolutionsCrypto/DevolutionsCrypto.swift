@@ -24,8 +24,11 @@ public class DevolutionsCrypto {
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
-            key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535)
+            
+            if(decodedSize > 0){
+                key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+                    resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535)
+                }
             }
         }
         
