@@ -11,6 +11,33 @@ import XCTest
 
 class DevolutionsCryptoTests: XCTestCase {
 
+    func testGenerateKeyPairSize() throws {
+        let size = GenerateKeyPairSize()
+        XCTAssert(size == 40)
+    }
+    
+    func testGenerateKeyPair() throws {
+        let size = GenerateKeyPairSize()
+        let publicPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+        let privatePointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+        
+        let generated = GenerateKeyPair(privatePointer, UInt(size), publicPointer, UInt(size))
+        
+        if(generated == 0){
+            let privateData = Data(bytesNoCopy: privatePointer, count: Int(size), deallocator: .free)
+            let privateDataInCorrectFormat = [UInt8](privateData)
+            let privateEncoded = Base64FS.encode(data: privateDataInCorrectFormat)
+            let privateString = String(bytes: privateEncoded, encoding: .utf8)
+            
+            let publicData = Data(bytesNoCopy: publicPointer, count: Int(size), deallocator: .free)
+            let publicDataInCorrectFormat = [UInt8](publicData)
+            let publicEncoded = Base64FS.encode(data: publicDataInCorrectFormat)
+            let publicString = String(bytes: publicEncoded, encoding: .utf8)
+            
+            XCTAssert(privateString != publicString)
+        }
+    }
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
