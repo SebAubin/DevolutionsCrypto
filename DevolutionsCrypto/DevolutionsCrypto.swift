@@ -120,23 +120,8 @@ public class DevolutionsCrypto {
         return false
     }
     
-    public func decodeBase64(encodedData: String) -> [UInt8]?{
-        let data = encodedData.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        resultPointer.initialize(repeating: 0, count: 65535)
-        var result: [UInt8]?
-        
-        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
-            
-            if(decodedSize > 0){
-                let data = Data(bytesNoCopy: decodedStringPointer, count: Int(decodedSize), deallocator: .free)
-                result = [UInt8](data)
-            }
-        }
-        
-        return result
+    public func decodeBase64(encodedData: String) -> String{
+        return Base64FS.decodeString(str: encodedData)
     }
     
     public func generateKey(keyLength: Int = 32) -> [UInt8]{
