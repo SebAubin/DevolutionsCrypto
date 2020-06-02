@@ -62,7 +62,7 @@ public class DevolutionsCrypto {
         return ""
     }
     
-    public func generateKey(keyLength: Int) -> String{
+    public func generateKeyString(keyLength: Int) -> String{
         let keyPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(keyLength))
         keyPointer.initialize(repeating: 0, count: Int(keyLength))
         

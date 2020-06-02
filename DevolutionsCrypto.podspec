@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "DevolutionsCrypto"
-  spec.version      = "0.2.3"
+  spec.version      = "0.2.4"
   spec.summary      = "A CocoaPods library for Devolutions crypto"
 
   spec.description  = <<-DESC
