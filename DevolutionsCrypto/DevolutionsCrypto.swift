@@ -120,8 +120,10 @@ public class DevolutionsCrypto {
         return false
     }
     
-    public func decodeBase64(encodedData: String) -> String{
-        return Base64FS.decodeString(str: encodedData)
+    public func decodeBase64(encodedData: String) -> [UInt8]{
+        let data = encodedData.data(using: .utf8)
+        guard data != nil else { return [] }
+        return Base64FS.decode(data: [UInt8](data!))
     }
     
     public func generateKey(keyLength: Int = 32) -> [UInt8]{
