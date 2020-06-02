@@ -10,7 +10,7 @@ import XCTest
 @testable import DevolutionsCrypto
 
 class DevolutionsCryptoTests: XCTestCase {
-
+    
     func testGenerateKeyPairSize() throws {
         let size = GenerateKeyPairSize()
         XCTAssert(size == 40)
@@ -38,14 +38,92 @@ class DevolutionsCryptoTests: XCTestCase {
         }
     }
     
+    public func testDecodeBase64() throws{
+        let encodedData = "DQwBAAIAAQAv3ANOIcPLYySJwcHgSo3Gk0Rwe78YiGZ42JrCZKC0cg"
+        let data = encodedData.data(using: .utf8)
+        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+        resultPointer.initialize(repeating: 0, count: 65535)
+        var result: [UInt8]?
+        
+        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
+            
+            if(decodedSize > 0){
+                let data = Data(bytesNoCopy: decodedStringPointer, count: Int(decodedSize), deallocator: .free)
+                result = [UInt8](data)
+            }
+        }
+        
+        XCTAssert(result != nil)
+    }
+    
+    func testEncryptAsymmetric() throws{
+        // Generate key to encrypt
+        let toEncryptKey = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
+        toEncryptKey.initialize(repeating: 0, count: 32)
+        let toEntrypt = GenerateKey(toEncryptKey, 32)
+        
+        if(toEntrypt == 0){
+            let intermediateKey = Data(bytesNoCopy: toEncryptKey, count: 32, deallocator: .free)
+            XCTAssert(true)
+            
+            // Generate keypair
+            let size = GenerateKeyPairSize()
+            let privateKeyPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+            privateKeyPointer.initialize(repeating: 0, count: Int(size))
+            let publicKeyPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+            publicKeyPointer.initialize(repeating: 0, count: Int(size))
+            let generationResult = GenerateKeyPair(privateKeyPointer, UInt(size), publicKeyPointer, UInt(size))
+            
+            if(generationResult == 0){
+                let privateKey = Data(bytesNoCopy: privateKeyPointer, count: Int(size), deallocator: .free)
+                let privateKeyBytes = [UInt8](privateKey)
+                
+                let publicKey = Data(bytesNoCopy: publicKeyPointer, count: Int(size), deallocator: .free)
+                let publicKeyBytes = [UInt8](publicKey)
+            
+                encryptAssymetric(toEncrypt: intermediateKey, with: publicKey)
+            }
+        }
+    }
+    
+    func encryptAssymetric(toEncrypt: Data, with: Data){
+        let encryptSize = EncryptAsymmetricSize(UInt(toEncrypt.count), 0)
+        
+        let resultEncryptedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(encryptSize))
+        resultEncryptedPointer.initialize(repeating: 0, count: Int(encryptSize))
+        
+        toEncrypt.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+            with.withUnsafeBytes{ (keyBufferRawBufferPointer) -> Void in
+                
+                // Test encrypt
+                let encryptedSize = EncryptAsymmetric(
+                    bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                    UInt(toEncrypt.count),
+                    keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                    UInt(with.count),
+                    resultEncryptedPointer,
+                    UInt(encryptSize),
+                    0)
+                
+                let final = Data(bytesNoCopy: resultEncryptedPointer, count: Int(encryptedSize), deallocator: .free)
+                let privateDataInCorrectFormat = [UInt8](final)
+                let privateEncoded = Base64FS.encode(data: privateDataInCorrectFormat)
+                let privateString = String(bytes: privateEncoded, encoding: .utf8)
+                XCTAssert(privateString != nil)
+            }
+        }        
+    }
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testKeySize() throws {
         let size = KeySize()
         XCTAssert(size == 256)
@@ -60,7 +138,7 @@ class DevolutionsCryptoTests: XCTestCase {
         
         // Validate header
         try! testValidateHeader(data: toDecrypt, dataLength: Int64(toDecrypt.count))
-
+        
         let data = toDecrypt.data(using: .utf8)
         let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
         let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
@@ -88,7 +166,7 @@ class DevolutionsCryptoTests: XCTestCase {
         let data = str.data(using: .utf8)
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             key.withUnsafeBytes{ (keyBufferRawBufferPointer) -> Void in
-               
+                
                 // Test encrypt
                 let encryptedSize = Encrypt(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(str.count), keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), 32, resultEncryptedPointer, UInt(encryptSize), 0)
                 
@@ -119,16 +197,14 @@ class DevolutionsCryptoTests: XCTestCase {
     
     func testValidateHeader(data: String, dataLength: Int64) throws{
         let data = data.data(using: .utf8)
-           
+        
         let decodedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
         decodedPointer.initialize(repeating: 0, count: 65535)
-
+        
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(dataLength), decodedPointer, 65535)
-
+            
             _ = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(2))
         }
-           
-        XCTAssert(true)
     }
 }
