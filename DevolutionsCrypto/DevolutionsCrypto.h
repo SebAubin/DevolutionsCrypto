@@ -39,3 +39,5 @@ int64_t Encrypt(const uint8_t *data, uintptr_t data_length, const uint8_t *key, 
 int64_t EncryptAsymmetric(const uint8_t *data, uintptr_t data_length, const uint8_t *public_key, uintptr_t public_key_length, uint8_t *result, uintptr_t result_length, uint16_t version);
 
 int64_t EncryptAsymmetricSize(uintptr_t data_length, uint16_t version);
+
+int64_t DecryptAsymmetric(const uint8_t *data, uintptr_t data_length, const uint8_t *private_key, uintptr_t private_key_length, uint8_t *result, uintptr_t result_length);

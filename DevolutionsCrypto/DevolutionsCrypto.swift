@@ -170,4 +170,72 @@ public class DevolutionsCrypto {
         
         return result
     }
+    
+    public func DecryptAssymmetric(toDecrypt: String, with: String) -> String?{
+        let toDecrypt = padBase64(value: toDecrypt)
+        let with = padBase64(value: with)
+        var result: String?
+        
+        if let toDecryptData = Data(base64urlEncoded: toDecrypt), let withData = Data(base64urlEncoded: with){
+
+            let toDecryptArrayData = Data([UInt8](toDecryptData))
+            let withArrayData = Data([UInt8](withData))
+            
+            let resultDecryptedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
+            resultDecryptedPointer.initialize(repeating: 0, count: 65535)
+            
+            toDecryptArrayData.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+                withArrayData.withUnsafeBytes{ (keyBufferRawBufferPointer) -> Void in
+                    let decryptedSize = DecryptAsymmetric(
+                        bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                        UInt(toDecryptArrayData.count),
+                        keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                        UInt(withArrayData.count),
+                        resultDecryptedPointer,
+                        UInt(65535))
+                    
+                    if(decryptedSize > 0){
+                        let final = Data(bytesNoCopy: resultDecryptedPointer, count: Int(decryptedSize), deallocator: .free)
+                        let dataInCorrectFormat = [UInt8](final)
+                        let dataEncoded = Base64FS.encode(data: dataInCorrectFormat)
+                        result = String(bytes: dataEncoded, encoding: .utf8)
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    func padBase64(value: String) -> String{
+        if(value.count % 4 == 2){
+            return "\(value)=="
+        }
+        
+        if(value.count % 4 == 3){
+            return "\(value)="
+        }
+        
+        return value
+    }
+}
+
+public extension Data {
+    init?(base64urlEncoded input: String) {
+        var base64 = input
+        base64 = base64.replacingOccurrences(of: "-", with: "+")
+        base64 = base64.replacingOccurrences(of: "_", with: "/")
+        while base64.count % 4 != 0 {
+            base64 = base64.appending("=")
+        }
+        self.init(base64Encoded: base64)
+    }
+
+    func base64urlEncodedString() -> String {
+        var result = self.base64EncodedString()
+        result = result.replacingOccurrences(of: "+", with: "-")
+        result = result.replacingOccurrences(of: "/", with: "_")
+        result = result.replacingOccurrences(of: "=", with: "")
+        return result
+    }
 }
