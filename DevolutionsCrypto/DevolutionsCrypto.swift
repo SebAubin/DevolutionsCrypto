@@ -135,7 +135,7 @@ public class DevolutionsCrypto {
         return [UInt8](final)
     }
     
-    public func encryptAsymetric(toEncrypt: [UInt8], with: [UInt8]) -> String? {
+    public func encryptAsymmetric(toEncrypt: [UInt8], with: [UInt8]) -> String? {
         let intermediateKey = Data(toEncrypt)
         let publicKey = Data(with)
         
