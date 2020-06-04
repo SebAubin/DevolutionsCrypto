@@ -171,7 +171,7 @@ public class DevolutionsCrypto {
         return result
     }
     
-    public func DecryptAssymmetric(toDecrypt: String, with: String) -> String?{
+    public func decryptAssymmetric(toDecrypt: String, with: String) -> String?{
         let toDecrypt = padBase64(value: toDecrypt)
         let with = padBase64(value: with)
         var result: String?
