@@ -135,14 +135,14 @@ public class DevolutionsCrypto {
         return [UInt8](final)
     }
     
-    public func encryptAssymetric(toEncrypt: [UInt8], with: [UInt8]) -> String? {
+    public func encryptAsymetric(toEncrypt: [UInt8], with: [UInt8]) -> String? {
         let intermediateKey = Data(toEncrypt)
         let publicKey = Data(with)
         
-        return doEncryptAssymetric(toEncrypt: intermediateKey, with: publicKey)
+        return doEncryptAsymmetric(toEncrypt: intermediateKey, with: publicKey)
     }
     
-    func doEncryptAssymetric(toEncrypt: Data, with: Data) -> String?{
+    func doEncryptAsymmetric(toEncrypt: Data, with: Data) -> String?{
         var result: String?
         let encryptSize = EncryptAsymmetricSize(UInt(toEncrypt.count), 0)
         
@@ -171,7 +171,7 @@ public class DevolutionsCrypto {
         return result
     }
     
-    public func decryptAssymmetric(toDecrypt: String, with: String) -> String?{
+    public func decryptAsymmetric(toDecrypt: String, with: String) -> String?{
         let toDecrypt = padBase64(value: toDecrypt)
         let with = padBase64(value: with)
         var result: String?
