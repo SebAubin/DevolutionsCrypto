@@ -112,18 +112,17 @@ public class DevolutionsCrypto {
         return ""
     }
     
-    public func encryptBytes(decryptedData: String, key: [UInt8]) -> [UInt8]{
-        let encryptSize = EncryptSize(UInt(decryptedData.count), 0)
+    public func encryptBytes(data: [UInt8], key: [UInt8]) -> [UInt8]{
+        let encryptSize = EncryptSize(UInt(data.count), 0)
         
         let resultEncryptedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(encryptSize))
         resultEncryptedPointer.initialize(repeating: 0, count: Int(encryptSize))
         
-        let data = decryptedData.data(using: .utf8)
         var encryptedSize: Int64 = -1;
         
-        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+        data.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             key.withUnsafeBytes{ (keyBufferRawBufferPointer) -> Void in
-                encryptedSize = Encrypt(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(decryptedData.count), keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultEncryptedPointer, UInt(encryptSize), 0)
+                encryptedSize = Encrypt(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(data.count), keyBufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultEncryptedPointer, UInt(encryptSize), 0)
             }
         }
         
