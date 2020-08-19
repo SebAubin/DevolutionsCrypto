@@ -59,8 +59,8 @@ class DevolutionsCryptoTests: XCTestCase {
     }
     
     func testDecryptAsymmetric(){
-        let toDecrypt = padBase64(value: "DQwCAAIAAgCi4Unb399d35pVIIUdq8WswjpRR1wbxNPPH82u-YUFAJKWyPw36Bb2bTggkvVi56L3y5XGuDH1Sh9QweLDsIRJxXDhUfEau4M1fJS4q-YjdqLi1JGyLWMhdxlNJSC4LUGU9AY2C3XJtw")
-        let with = padBase64(value:"DQwBAAEAAQAIn3_57jGNEnVSP5lKDe7IHWbGCDyuH4kc-St6aD50fQ")
+        let toDecrypt = "DQwCAAIAAgBc69b1pJGC3ZkCV0+vbLM4AAb4G2ChwvAR+adAs8l7A83b9pC7R2scX7lmrtfT+K7yCZahWy/6DVGyxK+5ce2PKmfAUFHF8DaCxwCg3637v8HkDrEcSBYiBR1LhUOGqrp4S+m60T9IVw=="
+        let with = "DQwCAAIAAgAUVq6wERSMCc3cP0wUfohpJRpgSmlhrUiYAjdictzqeb2HOml013HHUuBjTZBVOfWF2mW9NiHgd5aQW7H4gJM25FlkY1zTMW8wT1kBqnLx-3dMW0V4VGm7AXTlyJPHvANHIe--bCY-aPu6FDDtZf19"
         
         if let toDecryptData = Data(base64urlEncoded: toDecrypt), let withData = Data(base64urlEncoded: with){
 
@@ -227,6 +227,7 @@ class DevolutionsCryptoTests: XCTestCase {
         XCTAssert(true)
     }
     
+    
     func testGenerayKey() throws{
         let keyLength = 32
         
@@ -241,6 +242,11 @@ class DevolutionsCryptoTests: XCTestCase {
         XCTAssert(true)
     }
     
+    func testHeaderValidity() throws{
+        let data = "DQwCAAIAAgBZJb00ch3_Fb_8egMiy8yhtD4XtS9iwSOESFMMN9j_S1Ahq_AR-fQFZtWIjX57-1pyuocio5q8nuvPQCWaTMfYPcTU9CD1q8LspPgRvEFtKZvuaVJWy1fkLLT7sw-Alg101WhwSkUR4g=="
+        try! testValidateHeader(data: data, dataLength: Int64(data.count))
+    }
+    
     func testValidateHeader(data: String, dataLength: Int64) throws{
         let data = data.data(using: .utf8)
         
@@ -248,10 +254,15 @@ class DevolutionsCryptoTests: XCTestCase {
         decodedPointer.initialize(repeating: 0, count: 65535)
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedLength = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(dataLength), decodedPointer, 65535)
+            let decoded = Base64FS.decode(data: [UInt8](data!))
             
-            _ = ValidateHeader(decodedPointer, UInt(decodedLength), UInt16(2))
+            decoded.withUnsafeBytes{ (buffer) -> Void in
+                let valid = ValidateHeader(buffer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(decoded.count), UInt16(2))
+                print("is it?")
+            }
         }
+        
+        XCTAssert(true)
     }
 }
 

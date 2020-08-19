@@ -207,15 +207,15 @@ public class DevolutionsCrypto {
         return [UInt8](final)
     }
     
-    public func encryptAsymmetric(toEncrypt: [UInt8], with: [UInt8]) -> String? {
+    public func encryptAsymmetric(toEncrypt: [UInt8], with: [UInt8]) -> [UInt8]? {
         let intermediateKey = Data(toEncrypt)
         let publicKey = Data(with)
         
         return doEncryptAsymmetric(toEncrypt: intermediateKey, with: publicKey)
     }
     
-    func doEncryptAsymmetric(toEncrypt: Data, with: Data) -> String?{
-        var result: String?
+    func doEncryptAsymmetric(toEncrypt: Data, with: Data) -> [UInt8]?{
+        var result: [UInt8]?
         let encryptSize = EncryptAsymmetricSize(UInt(toEncrypt.count), 0)
         
         let resultEncryptedPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(encryptSize))
@@ -234,9 +234,7 @@ public class DevolutionsCrypto {
                     0)
                 
                 let final = Data(bytesNoCopy: resultEncryptedPointer, count: Int(encryptedSize), deallocator: .free)
-                let privateDataInCorrectFormat = [UInt8](final)
-                let privateEncoded = Base64FS.encode(data: privateDataInCorrectFormat)
-                result = String(bytes: privateEncoded, encoding: .utf8)
+                result = [UInt8](final)
             }
         }
         
