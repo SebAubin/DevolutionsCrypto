@@ -277,7 +277,7 @@ public class DevolutionsCrypto {
         return result
     }
     
-    func getArgon2ParametersBase64() -> String?{
+    public func getArgon2ParametersBase64() -> String?{
         let size = GetDefaultArgon2ParametersSize()
         let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
         argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
@@ -293,7 +293,7 @@ public class DevolutionsCrypto {
         return string
     }
     
-    func getDefaultArgonParametersSize(password: String) -> [UInt8]?{
+    public func deriveKeyArgon2(password: String) -> [UInt8]?{
         let size = GetDefaultArgon2ParametersSize()
         let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
         argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
