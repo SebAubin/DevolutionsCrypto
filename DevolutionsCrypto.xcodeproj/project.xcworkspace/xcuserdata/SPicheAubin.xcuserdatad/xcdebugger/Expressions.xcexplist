@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "DevolutionsCryptoTests.testGetArgon2ParametersBase64():DevolutionsCryptoTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "[UInt8](final)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DevolutionsCryptoTests.testDecrypt():DevolutionsCryptoTests.swift">
          <PersistentStrings>
             <PersistentString

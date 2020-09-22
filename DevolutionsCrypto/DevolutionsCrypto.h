@@ -41,3 +41,9 @@ int64_t EncryptAsymmetric(const uint8_t *data, uintptr_t data_length, const uint
 int64_t EncryptAsymmetricSize(uintptr_t data_length, uint16_t version);
 
 int64_t DecryptAsymmetric(const uint8_t *data, uintptr_t data_length, const uint8_t *private_key, uintptr_t private_key_length, uint8_t *result, uintptr_t result_length);
+
+int64_t GetDefaultArgon2ParametersSize();
+
+int64_t GetDefaultArgon2Parameters(const uint8_t *data, uintptr_t data_length);
+
+int64_t DeriveKeyArgon2(const uint8_t *key, uintptr_t keyLength, const uint8_t *argon2Params, uintptr_t argon2Length, const uint8_t *result, uintptr_t resultLength);

@@ -20,7 +20,7 @@
 		3EA4BDC82450950400F235FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDC62450950400F235FA /* LaunchScreen.storyboard */; };
 		3EA4BDCE245095FA00F235FA /* DevolutionsCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4BDCD245095FA00F235FA /* DevolutionsCrypto.swift */; };
 		3EA4BDD02450972100F235FA /* DevolutionsCrypto.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4BDCF2450972100F235FA /* DevolutionsCrypto.podspec */; };
-		3EA4BDEB2450C4B400F235FA /* libDevolutionsCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4BDEA2450C4B400F235FA /* libDevolutionsCrypto.a */; };
+		3EDC0E49251A465F00FD4C37 /* libDevolutionsCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDC0E48251A465F00FD4C37 /* libDevolutionsCrypto.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,7 @@
 		3EA4BDC92450950400F235FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EA4BDCD245095FA00F235FA /* DevolutionsCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionsCrypto.swift; sourceTree = "<group>"; };
 		3EA4BDCF2450972100F235FA /* DevolutionsCrypto.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DevolutionsCrypto.podspec; sourceTree = "<group>"; };
-		3EA4BDEA2450C4B400F235FA /* libDevolutionsCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDevolutionsCrypto.a; sourceTree = "<group>"; };
+		3EDC0E48251A465F00FD4C37 /* libDevolutionsCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDevolutionsCrypto.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EA4BDEB2450C4B400F235FA /* libDevolutionsCrypto.a in Frameworks */,
+				3EDC0E49251A465F00FD4C37 /* libDevolutionsCrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +140,7 @@
 		3EA4BDD32450A5FC00F235FA /* Rust */ = {
 			isa = PBXGroup;
 			children = (
-				3EA4BDEA2450C4B400F235FA /* libDevolutionsCrypto.a */,
+				3EDC0E48251A465F00FD4C37 /* libDevolutionsCrypto.a */,
 			);
 			path = Rust;
 			sourceTree = "<group>";
@@ -380,6 +380,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -446,6 +447,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -537,8 +539,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N592S9ASDB;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -556,8 +560,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N592S9ASDB;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = DevolutionsCryptoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

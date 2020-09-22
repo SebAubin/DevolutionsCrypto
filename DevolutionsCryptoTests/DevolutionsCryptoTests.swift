@@ -227,6 +227,45 @@ class DevolutionsCryptoTests: XCTestCase {
         XCTAssert(true)
     }
     
+    func testGetArgon2ParametersBase64() throws{
+        let size = GetDefaultArgon2ParametersSize()
+        let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+        argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
+        
+        GetDefaultArgon2Parameters(argon2ParamsBytes, UInt(size))
+        
+        let final = Data(bytesNoCopy: argon2ParamsBytes, count: Int(size), deallocator: .free)
+        let finalArray = [UInt8](final)
+        
+        let encoded = Base64FS.encode(data: finalArray)
+        
+        let string = String(bytes: encoded, encoding: .utf8)
+        print(string)
+    }
+    
+    func testGetDefaultArgonParametersSize() throws{
+        let size = GetDefaultArgon2ParametersSize()
+        let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+        argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
+        
+        GetDefaultArgon2Parameters(argon2ParamsBytes, UInt(size))
+        let passwordDerivedBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(32))
+        passwordDerivedBytes.initialize(repeating: 0, count: Int(32))
+        
+        let password = "test"
+        let data = password.data(using: .utf8)
+        
+        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+            let result = DeriveKeyArgon2(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(password.count), argon2ParamsBytes, UInt(size), passwordDerivedBytes, UInt(32))
+            
+            XCTAssert(result >= 0)
+            
+            let final = Data(bytesNoCopy: passwordDerivedBytes, count: Int(32), deallocator: .free)
+            let returnArray = [UInt8](final)
+            
+            XCTAssert(returnArray.count == 32)
+        }
+    }
     
     func testGenerayKey() throws{
         let keyLength = 32
