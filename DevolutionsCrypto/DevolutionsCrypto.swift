@@ -277,7 +277,7 @@ public class DevolutionsCrypto {
         return result
     }
     
-    public func getArgon2ParametersBase64() -> String?{
+    public func getArgon2ParametersBase64() -> [UInt8]?{
         let size = GetDefaultArgon2ParametersSize()
         let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
         argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
@@ -286,26 +286,18 @@ public class DevolutionsCrypto {
         
         let final = Data(bytesNoCopy: argon2ParamsBytes, count: Int(size), deallocator: .free)
         let finalArray = [UInt8](final)
-        
-        let encoded = Base64FS.encode(data: finalArray)
-        
-        let string = String(bytes: encoded, encoding: .utf8)
-        return string
+        return finalArray
     }
     
-    public func deriveKeyArgon2(password: String) -> [UInt8]?{
-        let size = GetDefaultArgon2ParametersSize()
-        let argon2ParamsBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
-        argon2ParamsBytes.initialize(repeating: 0, count: Int(size))
+    public func deriveKeyArgon2(password: String, params: [UInt8]) -> [UInt8]?{
         var result: [UInt8]?
         
-        GetDefaultArgon2Parameters(argon2ParamsBytes, UInt(size))
         let passwordDerivedBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(32))
         passwordDerivedBytes.initialize(repeating: 0, count: Int(32))
         
         let data = password.data(using: .utf8)
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let resultArgon = DeriveKeyArgon2(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(password.count), argon2ParamsBytes, UInt(size), passwordDerivedBytes, UInt(32))
+            let resultArgon = DeriveKeyArgon2(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(password.count), params, UInt(params.count), passwordDerivedBytes, UInt(32))
             
             if(resultArgon >= 0){
                 let final = Data(bytesNoCopy: passwordDerivedBytes, count: Int(32), deallocator: .free)
