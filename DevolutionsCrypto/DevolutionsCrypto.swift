@@ -308,6 +308,37 @@ public class DevolutionsCrypto {
         return result
     }
     
+    public func scryptSimple(passwordBytes: [UInt8], saltBytes: [UInt8], log_n: Int, r: Int, p: Int) -> [UInt8]?{
+        var result: [UInt8]?
+        
+        let size = ScryptSimpleSize()
+        
+        let sCryptedBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(size))
+        sCryptedBytes.initialize(repeating: 0, count: Int(size))
+        
+        passwordBytes.withUnsafeBytes{ (passwordBuffer) -> Void in
+            saltBytes.withUnsafeBytes{ (saltBuffer) -> Void in
+                let size = ScryptSimple(
+                    passwordBuffer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                    UInt(passwordBytes.count),
+                    saltBuffer.baseAddress!.assumingMemoryBound(to: UInt8.self),
+                    UInt(saltBytes.count),
+                    UInt8(log_n),
+                    UInt32(r),
+                    UInt32(p),
+                    sCryptedBytes,
+                    UInt(size))
+                
+                if(size >= 0){
+                    let final = Data(bytesNoCopy: sCryptedBytes, count: Int(size), deallocator: .free)
+                    result = [UInt8](final)
+                }
+            }
+        }
+        
+        return result
+    }
+    
     func padBase64(value: String) -> String{
         if(value.count % 4 == 2){
             return "\(value)=="
