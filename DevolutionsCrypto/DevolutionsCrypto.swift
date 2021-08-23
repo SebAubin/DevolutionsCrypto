@@ -17,17 +17,17 @@ public class DevolutionsCrypto {
     
     public func decrypt(encodedData: String, key: [UInt8]) -> String {
         let data = encodedData.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        resultPointer.initialize(repeating: 0, count: 65535)
+        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
+        resultPointer.initialize(repeating: 0, count: encodedData.count+1)
         var resultCode: Int64 = -1;
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
+            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, UInt(encodedData.count+1))
             
             if(decodedSize > 0){
                 key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                    resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535)
+                    resultCode = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, UInt(encodedData.count+1))
                 }
             }
         }
@@ -41,42 +41,17 @@ public class DevolutionsCrypto {
     
     public func decryptBytes(encodedData: String, key: [UInt8]) -> [UInt8] {
         let data = encodedData.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535)
-        resultPointer.initialize(repeating: 0, count: 65535)
+        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
+        resultPointer.initialize(repeating: 0, count: encodedData.count+1)
         var decryptLength: Int64 = -1;
         
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535)
+            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, UInt(encodedData.count+1))
             
             if(decodedSize > 0){
                 key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                    decryptLength = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535)
-                }
-            }
-        }
-        
-        if decryptLength > 0{
-            let data = Data(bytesNoCopy: resultPointer, count: Int(decryptLength), deallocator: .free)
-            return [UInt8](data)
-        }
-        
-        return []
-    }
-    
-    public func decryptBigDataBytes(encodedData: String, key: [UInt8]) -> [UInt8] {
-        let data = encodedData.data(using: .utf8)
-        let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535 * 256)
-        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: 65535 * 256)
-        resultPointer.initialize(repeating: 0, count: 65535 * 256)
-        var decryptLength: Int64 = -1;
-        
-        data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-            let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, 65535 * 256)
-            
-            if(decodedSize > 0){
-                key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
-                    decryptLength = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, 65535 * 256)
+                    decryptLength = Decrypt(decodedStringPointer, UInt(decodedSize), bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, UInt(encodedData.count+1))
                 }
             }
         }
