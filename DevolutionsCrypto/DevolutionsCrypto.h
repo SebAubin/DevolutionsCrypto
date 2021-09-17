@@ -47,3 +47,15 @@ int64_t GetDefaultArgon2ParametersSize();
 int64_t GetDefaultArgon2Parameters(const uint8_t *data, uintptr_t data_length);
 
 int64_t DeriveKeyArgon2(const uint8_t *key, uintptr_t keyLength, const uint8_t *argon2Params, uintptr_t argon2Length, const uint8_t *result, uintptr_t resultLength);
+
+int64_t ScryptSimple(const uint8_t *password,
+                     uintptr_t password_length,
+                     const uint8_t *salt,
+                     uintptr_t salt_length,
+                     uint8_t log_n,
+                     uint32_t r,
+                     uint32_t p,
+                     uint8_t *output,
+                     uintptr_t output_length);
+
+int64_t ScryptSimpleSize();
