@@ -39,6 +39,25 @@ public class DevolutionsCrypto {
         return ""
     }
     
+    public func decryptBytesFromBytes(encodedData: [UInt8], key: [UInt8]) -> [UInt8] {
+        let resultPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
+        resultPointer.initialize(repeating: 0, count: encodedData.count+1)
+        var decryptLength: Int64 = -1;
+        
+        encodedData.withUnsafeBytes{ (dataRawBufferPointer) -> Void in
+            key.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
+                decryptLength = Decrypt(dataRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count),bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(key.count), resultPointer, UInt(encodedData.count+1))
+            }
+        }
+        
+        if decryptLength > 0{
+            let data = Data(bytesNoCopy: resultPointer, count: Int(decryptLength), deallocator: .free)
+            return [UInt8](data)
+        }
+        
+        return []
+    }
+    
     public func decryptBytes(encodedData: String, key: [UInt8]) -> [UInt8] {
         let data = encodedData.data(using: .utf8)
         let decodedStringPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: encodedData.count+1)
@@ -222,7 +241,7 @@ public class DevolutionsCrypto {
         var result: String?
         
         if let toDecryptData = Data(base64urlEncoded: toDecrypt), let withData = Data(base64urlEncoded: with){
-
+            
             let toDecryptArrayData = Data([UInt8](toDecryptData))
             let withArrayData = Data([UInt8](withData))
             
@@ -337,7 +356,7 @@ public extension Data {
         }
         self.init(base64Encoded: base64)
     }
-
+    
     func base64urlEncodedString() -> String {
         var result = self.base64EncodedString()
         result = result.replacingOccurrences(of: "+", with: "-")
