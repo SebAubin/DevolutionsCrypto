@@ -18,5 +18,7 @@ This CocoaPods library is for the Swift binding of the Devolutions crypto lib
   spec.source        = { :git => "https://github.com/SebAubin/DevolutionsCrypto.git", :tag => "#{spec.version}" }
   spec.source_files  = "DevolutionsCrypto/**/*.{h,m,swift}"
   spec.vendored_libraries = 'DevolutionsCrypto/Rust/*.a'
-
+  
+  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
