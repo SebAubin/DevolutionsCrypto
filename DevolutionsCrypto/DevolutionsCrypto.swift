@@ -22,6 +22,11 @@ public class DevolutionsCrypto {
         resultPointer.initialize(repeating: 0, count: encodedData.count+1)
         var resultCode: Int64 = -1;
         
+        defer {
+           decodedStringPointer.deallocate()
+           resultPointer.deallocate()
+       }
+        
         data?.withUnsafeBytes{ (bufferRawBufferPointer) -> Void in
             let decodedSize = Decode(bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self), UInt(encodedData.count), decodedStringPointer, UInt(encodedData.count+1))
             
